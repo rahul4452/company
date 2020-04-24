@@ -1,0 +1,25 @@
+
+
+<h1>Relocation requests  <%=@relocation_emp.count %> </h1>
+
+<table>
+
+    <tr>
+      <th>Sr.no</th>
+      <th>Employee Name</th>
+      <th>Employee City </th>
+    </tr>
+  <tbody>
+
+    <% @relocation_emp.each_with_index do |employee,i| %>
+
+      <tr>
+        <td><%= i + 1 %> </td>
+        <td><%= link_to "#{employee.name}", edit_employee_path(employee.id) %></td>
+        <td><%= City.find(employee.city_id).name %> </td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Manager', manager_path %>

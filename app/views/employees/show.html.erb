@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+	<%= image_tag(@employee.image_url.to_s) %>
+
+</div>
+
+<div>
+	<strong>Employee ID : </strong> <%= @employee.id %> <br>
+	<strong>Employee Name : </strong><%= @employee.name %> <br>
+   <strong>Employee City : </strong>  <%= @city.find(@employee.city_id).name %> <br>
+   <strong>Subordinate Count </strong> <%= @manager_subordinate[@employee.id] %> <br>
+</div>
+
+<table style="border:1px solid black;">
+  <tr >
+    <th style="border:1px solid black;">Sr.no</th>
+    <th style="border:1px solid black;">Name</th>
+    
+    <th style="border:1px solid black;">City_name</th>
+    
+    
+  </tr>
+	<%@subordinate.each_with_index do |subor,i| %>
+		<tr>
+			<td style="border:1px dotted black;"><%= i+1 %></td>
+		    <td style="border:1px dotted black;"><%=subor.name%></td>
+		    <td style="border:1px dotted black;"><%=City.find(subor.city_id).name%></td>
+		    
+	  	</tr>
+	<%end%>
+</table>
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Home', manager_path %>

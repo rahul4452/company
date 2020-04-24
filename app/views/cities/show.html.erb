@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City Name:</strong>
+  <%= @city.name %>
+</p>
+
+<p>
+  <strong>Total Number of Employees:</strong>
+  <%= @city.employees.count %>
+</p>
+
+<table>
+
+    <tr>
+      <th>Sr.no</th>
+      <th>Emp Name</th>
+      <th>Manager’s name</th>
+      <th>Manager’s City</th>
+    </tr>
+  <tbody>
+
+    <% @employee.each_with_index do |employee,i| %>
+
+      <tr>
+        <td><%=i+1 %></td>
+        <td><%= employee.name %></td>
+        <% manager = Employee.find(employee.manager_id)
+        city = City.find(manager.city_id) %>
+
+        <td><%= manager.name %></td>
+        <td><%= city.name %></td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'Edit', edit_city_path(@city) %> |
+<%= link_to 'Back', cities_path %>

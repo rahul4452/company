@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Cities : <%= @cities.count %> </h1>
+
+<table>
+
+    <tr>
+      <th>Sr.no</th>
+      <th>City Name</th>
+      <th>City Employess</th>
+    </tr>
+  <tbody>
+
+    <% @cities.each_with_index do |city,i| %>
+
+      <tr>
+        <td><%= i + 1 %></td>
+        <td><%= link_to "#{city.name}", city_path(city.id) %></td>
+        <td><%= city.employees.count %></td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New City", new_city_path %><br>
+<%= link_to "Home", employees_path %>
+

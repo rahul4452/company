@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Employees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sr.no.</th>
+      <th>Name</th>
+      <th>Profile Image</th>
+      <th>Manager</th>
+      <th>City</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each_with_index do |employee,i| %>
+      <tr>
+        <td><%=i+1%></td>
+        <td><%= employee.name %></td>
+        <td><%= link_to image_tag(employee.image_url.to_s), employee %></td>
+        <td><%= employee.manager_id %></td>
+        <td><%= employee.city_id %></td>
+        
+        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br>
+<%= link_to 'All Manager', manager_path %>
+
+<br>
+
+<%= link_to "City", cities_path %>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>

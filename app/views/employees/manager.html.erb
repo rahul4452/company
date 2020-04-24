@@ -1,0 +1,32 @@
+<h1>Manager</h1>
+
+<table >
+  <tr >
+    <th >Sr.No</th>
+    <th >Manager Name</th>
+    <th >Subordinate Count</th>
+    <th >Manager City</th>
+    <th >More Details</th>
+  </tr>
+	<% @manager_emp.each_with_index do |manager,i| %>
+		<tr>
+			<td > <%= i+1 %></td>
+		    <td ><%= manager.name %></td>
+		    <td ><%= @manager_subordinate[manager.id] %></td>
+		    <td ><%= @city.find(manager.city_id).name %></td>
+		    <td ><%= link_to "more_details", employee_path(manager.id) %></td>
+	  	</tr>
+	<% end %>
+</table>
+
+<br>
+<%= will_paginate @manager_emp %>
+
+<br>
+
+<%= link_to "cities", cities_path %><br>
+<%= link_to "relocation_employee", relocation_requests_path %><br>
+<%= link_to "Home", employees_path %><br>
+
+
+
